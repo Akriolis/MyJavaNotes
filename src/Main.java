@@ -1,5 +1,8 @@
+import java.net.Inet4Address;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.HashMap;
 
 import java.util.Arrays;
 
@@ -219,14 +222,159 @@ public class Main {
         }
 
         System.out.println(numbers);
-        numbers.removeIf(number -> number % 2 == 1);
+        //numbers.removeIf(number -> number % 2 == 1);
         System.out.println(numbers);
         // the removeIf() takes a lambda expression as a parameter
         // lambda expressions are like unnamed methods
 
         // clone() method
         ArrayList<Integer> numbersCloned = (ArrayList<Integer>)numbers.clone();
-        
+
+        // contains() method can be used to check if an array list contains a given element or not
+
+        System.out.println(numbers.contains(8));
+
+        // sort() fun can also be used for array list
+
+        // retainAll() method can find elements which are present in both array lists
+        // and remove the rest from the first array list
+
+        ArrayList<Integer> oddNumbers3 = new ArrayList<>();
+
+        oddNumbers3.add(1);
+        oddNumbers3.add(3);
+        oddNumbers3.add(5);
+
+        ArrayList<Integer> moreOddNumbers = new ArrayList<Integer>();
+
+        moreOddNumbers.add(5);
+        moreOddNumbers.add(7);
+        moreOddNumbers.add(9);
+
+        oddNumbers3.retainAll(moreOddNumbers);
+
+        System.out.println(oddNumbers3.toString());
+
+        ArrayList<Integer> testList = (ArrayList<Integer>)numbers.clone();
+
+        testList.forEach(x -> {
+            x = x * 2;
+            System.out.printf("%d ", x);
+            System.out.println(testList);
+
+        });
+
+        // Hash Maps in Java
+        // looks similar to Kotlin - key-value pairs
+        // import java.util.HashMap;
+
+        HashMap<String, Double> prices = new HashMap<>();
+
+        String goods [] = {"apple", "orange", "guava", "berry", "banana"};
+        double pricesArray [] = {2.0, 1.8, 1.5, 2.5, 1.0};
+        for (int i = 0; i < 5; i++){
+            prices.put(goods[i],pricesArray[i]);
+        }
+        System.out.printf(prices.toString());
+
+        // putIfAbsent() method adds the given element only if it already doesn't exist in the has map
+        prices.putIfAbsent("guava", 2.9);
+
+        // get() method bring out a value from the hash map
+        // it takes the key as its parameter
+        System.out.println();
+        System.out.println(prices.get("banana"));
+
+        // the getOrDefault() but if the given key is not found, it'll
+        // return a specified default value (that value has to match the type of the values in hash map)
+        System.out.println(prices.getOrDefault("strawberry", 0.0));
+
+        // map value can be updated by replace() method
+        prices.replace("berry", 2.8);
+
+        // for removing elements from a has map, you can remove() method
+        prices.remove("guava");
+        System.out.println(prices.toString());
+
+        // size() method
+        System.out.println(prices.size());
+
+        // clear () - nuff said
+
+        // putAll() method
+        HashMap<String, Double> morePrices = new HashMap<>();
+
+        prices.put("jackfruit", 2.9);
+        prices.put("pineapple", 1.2);
+        prices.put("tomato", 0.8);
+
+        prices.putAll (morePrices);
+        System.out.println(prices.toString());
+
+        // you can use replaceAll() method to update values in a hash map
+
+        prices.replaceAll((x, y) -> y * 2);
+        System.out.println(prices.toString());
+
+        // for purpose of checking key or a value
+        // containsKey(), containsValue() methods
+
+        boolean isTrue = prices.containsKey("tomato");
+        System.out.println(isTrue);
+
+        // isEmpty() method for ch
+
+        boolean isFalse = prices.isEmpty();
+        System.out.println(isFalse);
+
+        // Hash map also have their own forEach() method;
+        prices.forEach((fruit, price) -> {
+            System.out.println(fruit + " - "+ (price - 0.5));
+        });
+
+        // classes and objects in Java
+        // OOP (Object-oriented programming) is a programming paradigm
+        // based on the concept of "objects", which can contain
+        // data and code: data in the form of fields (often known as
+        // attributes or properties), and code, in the form of procedures
+        // (often known as methods).
+
+        User myUser = new User();
+        myUser.name = "Mister Bean";
+        myUser.birthDay = LocalDate.parse("1956-09-15");
+
+        System.out.printf("%s was born on the highway in a train wreck on %s",
+                myUser.name, myUser.birthDay.toString());
+        System.out.println();
+
+        //default values of properties for new created instance of a class is null
+
+        System.out.println(myUser.age());
+        System.out.printf("%s was born on the highway in a train wreck, and now he is %s years old",
+                myUser.name, myUser.age());
+        System.out.println();
+
+        Book myBook2 = new Book();
+        myBook2.title = "Monday Begins on Saturday";
+        myBook2.authors.add ("Arkady Strugatsky");
+        myBook2.authors.add ("Boris Strugatsky");
+
+        Book myBook = new Book();
+        myBook.title = "The Great Gatsby";
+        myBook.authors.add("F. Scott Fitzgerald");
+
+        System.out.printf("%s is written by %s", myBook.title, myBook.authors.toString());
+        System.out.println();
+
+        myUser.borrow(myBook2);
+        myUser.borrow(myBook);
+
+        System.out.printf("%s has borrowed these books: %s", myUser.name, myUser.borrowedBooks.toString());
+        System.out.println();
+
+        // method overloading
+
+
 
     }
 }
