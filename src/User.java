@@ -1,12 +1,13 @@
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class User {
-    String name;
-    LocalDate birthDay;
+    private String name;
+    private LocalDate birthDay;
 
-    ArrayList<Book> borrowedBooks = new ArrayList<Book>();
+    private ArrayList<Book> borrowedBooks = new ArrayList<Book>();
 
     // what is method?
     // this keyword represents the current instance of the class (useful to
@@ -38,7 +39,27 @@ public class User {
     // methods can also accept parameters
 
     void borrow(Book book){
-        this.borrowedBooks.add(book);
+        borrowedBooks.add(book);
+    }
+
+    void borrow(Book[] books){
+        borrowedBooks.addAll(Arrays.asList(books));
+    }
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getBorrowedBooks(){
+        return this.borrowedBooks.toString();
+    }
+
+    User (String name, String birthDay){
+        this.name = name;
+        this.birthDay = LocalDate.parse(birthDay);
     }
 
 

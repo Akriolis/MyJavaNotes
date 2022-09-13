@@ -213,7 +213,7 @@ public class Main {
 
         //addAll(), removeAll() and clear() works similar to Kotlin
 
-        // removeIf() method can remove elements from an array list if the meet a certain condition
+        // removeIf() method can remove elements from an array list if meet a certain condition
 
         ArrayList<Integer> numbers = new ArrayList<>();
 
@@ -304,7 +304,7 @@ public class Main {
         // putAll() method
         HashMap<String, Double> morePrices = new HashMap<>();
 
-        prices.put("jackfruit", 2.9);
+        prices.put("jack-fruit", 2.9);
         prices.put("pineapple", 1.2);
         prices.put("tomato", 0.8);
 
@@ -339,41 +339,85 @@ public class Main {
         // attributes or properties), and code, in the form of procedures
         // (often known as methods).
 
-        User myUser = new User();
-        myUser.name = "Mister Bean";
-        myUser.birthDay = LocalDate.parse("1956-09-15");
+        User myUser = new User("Mister Bean","1956-09-15");
+        //myUser.name = "Mister Bean";
+        //myUser.birthDay = LocalDate.parse("1956-09-15");
 
-        System.out.printf("%s was born on the highway in a train wreck on %s",
+        /*System.out.printf("%s was born on the highway in a train wreck on %s",
                 myUser.name, myUser.birthDay.toString());
-        System.out.println();
+        System.out.println();*/
 
         //default values of properties for new created instance of a class is null
 
         System.out.println(myUser.age());
-        System.out.printf("%s was born on the highway in a train wreck, and now he is %s years old",
+        /*System.out.printf("%s was born on the highway in a train wreck, and now he is %s years old",
                 myUser.name, myUser.age());
-        System.out.println();
+        System.out.println();*/
 
-        Book myBook2 = new Book();
-        myBook2.title = "Monday Begins on Saturday";
-        myBook2.authors.add ("Arkady Strugatsky");
-        myBook2.authors.add ("Boris Strugatsky");
+        Book myBook2 = new Book("Monday Begins on Saturday", 100, new String[]{"Arkady Strugatsky","Boris Strugatsky"});
+        //myBook2.title = "Monday Begins on Saturday";
+        //myBook2.authors.add ("Arkady Strugatsky");
+        //myBook2.authors.add ("Boris Strugatsky");
 
-        Book myBook = new Book();
-        myBook.title = "The Great Gatsby";
-        myBook.authors.add("F. Scott Fitzgerald");
+        Book myBook = new Book("The Great Gatsby", 180, new String[]{"F. Scott Fitzgerald"});
+        //myBook.title = "The Great Gatsby";
+        //myBook.authors.add("F. Scott Fitzgerald");
 
-        System.out.printf("%s is written by %s", myBook.title, myBook.authors.toString());
-        System.out.println();
+        /*System.out.printf("%s is written by %s", myBook.title, myBook.authors.toString());
+        System.out.println();*/
 
         myUser.borrow(myBook2);
         myUser.borrow(myBook);
 
-        System.out.printf("%s has borrowed these books: %s", myUser.name, myUser.borrowedBooks.toString());
-        System.out.println();
+        /*System.out.printf("%s has borrowed these books: %s", myUser.name, myUser.borrowedBooks.toString());
+        System.out.println();*/
 
         // method overloading
+        // methods have same name if their parameters are different
 
+        Book book1 = new Book("Carmilla", 300, new String[]{"Sheridan Le Fanu"});
+        Book book2 = new Book("Frankenstein", 200, new String[]{"Mary Shelley"});
+        Book book3 = new Book("Dracula", 150, new String[]{"Bram Stoker"});
+
+        myUser.borrow(new Book[]{book1,book2});
+        myUser.borrow(book3);
+
+        Car myBMW = new Car("BMW", 250, "e39");
+        myBMW.isBroken = false;
+        System.out.println(myBMW.drive());
+
+        // access modifiers in Java
+        // default = accessible within the package
+        // public = accessible everywhere
+        // private = accessible within the class
+        // protected = accessible within the class and subclasses
+
+        // public access modifier is pretty self-explanatory
+        // private are the opposite - only available within their class
+
+        // it's mandatory to hide sensitive (or important) data in private modifier
+        // to reach this date, you need to use public methods
+        // it's all about encapsulation
+
+
+        // getters and setters
+        System.out.printf("%s has borrowed these books: %s", myUser.getName(), myUser.getBorrowedBooks());
+        System.out.println();
+
+        System.out.println(book3.getAuthors());
+
+        // Inheritance in Java
+
+        Book thisBook = new Book ("War and Peace", 700, new String []{"Sheridan Le Fanu"});
+        Ebook ebook = new Ebook("Frankenstein", 220, new String[]{"Mary Shelley"}, "PDF");
+        AudioBook audioBook = new AudioBook("Dracula", new String[]{"Bram Stoker"}, 160);
+
+        System.out.println(thisBook.toString());
+        System.out.println(ebook.toString());
+        System.out.println(audioBook.toString());
+
+        // How to override a method in Java
+        // in AudioBook
 
 
     }
